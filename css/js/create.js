@@ -20,14 +20,35 @@ function create() {
     return;
   }
 
-  fetch("http://localhost:3000/news", {
+  const token = localStorage.getItem("token");
+  if (!token) {
+    alert("You must be logged in to create news.");
+    window.location.href = "index.html";
+    return;
+  }
+
+  fetch("http://localhost:3000/api/news", {
     method: "POST",
-    headers: { "Content-Type": "application/json" },
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": `Bearer ${token}`
+    },
     body: JSON.stringify({
       title,
       body,
       author_id: Number(localStorage.getItem("userId")),
       comments: []
     })
-  }).then(() => location.href = "news.html");
+  }).then(async (res) => {
+    if (res.status === 401 || res.status === 403) {
+      alert("Session expired. Please login again.");
+      window.location.href = "index.html";
+      return;
+    }
+    if (!res.ok) {
+      alert("Failed to create news");
+      return;
+    }
+    location.href = "news.html";
+  });
 }
