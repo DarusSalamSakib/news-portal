@@ -7,9 +7,11 @@
 	</header>
 
 	<h2>Login</h2>
-	<div class="center" style="margin-top:12px">
-		<select id="userSelect"></select>
-		<button onclick="login()">Login</button>
+	<div class="center" style="margin-top:12px; flex-direction: column; gap: 10px;">
+		<input type="email" id="email" placeholder="Email Address" style="padding: 8px; width: 300px;">
+		<input type="password" id="password" placeholder="Password" style="padding: 8px; width: 300px;">
+		<button onclick="login()" style="width: 320px;">Login</button>
+		<p>Don't have an account? <a href="register.html">Register here</a></p>
 	</div>
 </div>
 
