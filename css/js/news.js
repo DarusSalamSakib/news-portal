@@ -21,7 +21,7 @@ fetch("http://localhost:3000/news")
             </div>
           </div>
           <h3>${n.title}</h3>
-          <p class="muted">${(n.body || '').slice(0,160)}${(n.body && n.body.length>160)?'...':''}</p>
+          <p class="muted">${(n.body || '').slice(0, 160)}${(n.body && n.body.length > 160) ? '...' : ''}</p>
         </div>
       `;
     });
